@@ -16,7 +16,6 @@ class Box extends Component {
   }
 
   async componentDidMount() {
-    console.log('mounting')
     this.getNewCard();
   }
 
@@ -53,7 +52,13 @@ class Box extends Component {
     const animalLetters = animalName.split('');
     const animalNameQuery = animalName.split(' ').join('+');
 
-    const boxClasses = this.props.order === 'first' ? this.props.order : `${this.props.order} slide-in`;
+    let boxClasses = this.props.order;
+    
+    if (this.props.order !== 'first') {
+      const slideDirections = ['left', 'right', 'up', 'down'];
+      const slideIndex = this.getRandomNumber(0, 4);
+      boxClasses += ` slide-in ${slideDirections[slideIndex]}`;
+    }
 
     await this.setState({ colorClass, animalLetters, animalNameQuery, displayText: '', boxClasses });
 
