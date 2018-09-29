@@ -1,7 +1,70 @@
-.App {
+.grid-size-select {
+  position: absolute;
+  z-index: 100;
+}
+
+.box-container,
+.box-container.gridSize5 {
   display: grid;
   grid-template-columns: 20% 20% 20% 20% 20%;
   grid-template-rows: 20% 20% 20% 20% 20%;
+  overflow: hidden;
   width: 100vw;
   height: 100vh;
+}
+
+.box-container.gridSize4 {
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+  grid-template-rows: 26% 26% 26% 26%;
+}
+
+.box-container.gridSize3 {
+  display: grid;
+  grid-template-columns: 33.33% 33.33% 33.33%;
+  grid-template-rows: 34% 34% 34%;
+}
+
+.box-container.gridSize2 {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 51% 51%;
+}
+
+.box-container.gridSize1 {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 105%;
+}
+
+@media screen and (max-width: 1000px) {
+  .box-container {
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-rows: 26% 26% 26% 26%;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .box-container {
+    display: grid;
+    grid-template-columns: 33.33% 33.33% 33.33%;
+    grid-template-rows: 34% 34% 34%;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .box-container {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 51% 51%;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  .box-container {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 105%;
+  }
 }

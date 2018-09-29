@@ -23,8 +23,12 @@ class BoxSquare extends Component {
     const newBox = <Box key={uniqueKey} order="second" changeBox={this.changeBox}/>
 
     const newBoxes = [...this.state.boxes, newBox];
-    
 
+    // Limit length of boxes array to 2
+    if (newBoxes.length > 2) {
+      newBoxes.shift();
+    }
+    
     this.setState({ boxes: newBoxes, count: newCount });
   }
 
