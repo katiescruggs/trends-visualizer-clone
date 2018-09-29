@@ -8,7 +8,9 @@ class App extends Component {
     super();
     this.state = {
       boxes: [],
-      numberOfBoxes: 25
+      numberOfBoxes: 25,
+      defaultGridSize: true,
+      gridSize: 5
     }
   }
   
@@ -27,28 +29,32 @@ class App extends Component {
     this.setState({ boxes });
   }
 
-  handleInputChange = async (event) => {
-    const { name, value } = event.target;
-    const numberOfBoxes = parseInt(value, 10);
+  handleSelectChange = async (event) => {
+    if (event.target.value === 'default') {
+      if (!this.state.defaultGridSize) {
+        await this.setState({ defaultGridSize: true })
+      }
+    } else {
+      const gridSize = parseInt(event.target.value, 10);
 
-    if (numberOfBoxes !== this.state.numberOfBoxes) {
-      await this.setState({ [name]: numberOfBoxes });
-      this.createBoxes();
+      if (gridSize !== this.state.gridSize || this.state.defaultGridSize) {
+        await this.setState({ defaultGridSize: false, gridSize });
+      }
     }
   }
 
   render() {
     return (
       <div className="App">
-        <select className="grid-size-select" name="numberOfBoxes" onChange={this.handleInputChange}>
-          <option selected disabled>select a grid size</option>
-          <option value="25">5 x 5</option>
-          <option value="16">4 x 4</option>
-          <option value="9">3 x 3</option>
-          <option value="4">2 x 2</option>
+        <select defaultValue="default" className="grid-size-select" name="gridSize" onChange={this.handleSelectChange}>
+          <option value="default">default grid size</option>
+          <option value="5">5 x 5</option>
+          <option value="4">4 x 4</option>
+          <option value="3">3 x 3</option>
+          <option value="2">2 x 2</option>
           <option value="1">1 x 1</option>
         </select>
-        <div className={`box-container numberOfBoxes${this.state.numberOfBoxes}`}>
+        <div className={`box-container gridSize${this.state.defaultGridSize || this.state.gridSize}`}>
           {this.state.boxes}
         </div>
       </div>
