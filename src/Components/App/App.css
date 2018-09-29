@@ -1,4 +1,9 @@
-.App {
+.grid-size-select {
+  position: absolute;
+  z-index: 100;
+}
+
+.box-container {
   display: grid;
   grid-template-columns: 20% 20% 20% 20% 20%;
   grid-template-rows: 20% 20% 20% 20% 20%;
@@ -7,8 +12,32 @@
   height: 100vh;
 }
 
+.box-container.numberOfBoxes16 {
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+  grid-template-rows: 26% 26% 26% 26%;
+}
+
+.box-container.numberOfBoxes9 {
+  display: grid;
+  grid-template-columns: 33.33% 33.33% 33.33%;
+  grid-template-rows: 34% 34% 34%;
+}
+
+.box-container.numberOfBoxes4 {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 51% 51%;
+}
+
+.box-container.numberOfBoxes1 {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 105%;
+}
+
 @media screen and (max-width: 1000px) {
-  .App {
+  .box-container {
     display: grid;
     grid-template-columns: 25% 25% 25% 25%;
     grid-template-rows: 26% 26% 26% 26%;
@@ -16,7 +45,7 @@
 }
 
 @media screen and (max-width: 750px) {
-  .App {
+  .box-container {
     display: grid;
     grid-template-columns: 33.33% 33.33% 33.33%;
     grid-template-rows: 34% 34% 34%;
@@ -24,7 +53,7 @@
 }
 
 @media screen and (max-width: 575px) {
-  .App {
+  .box-container {
     display: grid;
     grid-template-columns: 50% 50%;
     grid-template-rows: 51% 51%;
@@ -32,7 +61,7 @@
 }
 
 @media screen and (max-width: 380px) {
-  .App {
+  .box-container {
     display: grid;
     grid-template-columns: 100%;
     grid-template-rows: 105%;
