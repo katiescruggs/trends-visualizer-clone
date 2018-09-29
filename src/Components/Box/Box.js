@@ -6,6 +6,7 @@ class Box extends Component {
   constructor() {
     super();
     this.state = {
+      animalNameQuery: '',
       animalLetters: [],
       colorClass: '',
       displayText: '',
@@ -40,16 +41,17 @@ class Box extends Component {
       setTimeout(() => this.type(), 300);
     } else {
       this.setState({ otherClasses: 'done-typing' });
-      // this.props.changeCards();
       setTimeout(() => this.getNewCard(), 3000);
     }
   }
 
   async getNewCard() {
     const colorClass = this.getColorClass();
-    const animalLetters = this.getAnimalName().split('');
+    const animalName = this.getAnimalName();
+    const animalLetters = animalName.split('');
+    const animalNameQuery = animalName.split(' ').join('+');
 
-    await this.setState({ colorClass, animalLetters, displayText: '' });
+    await this.setState({ colorClass, animalLetters, animalNameQuery, displayText: '' });
 
     this.type();
   }
@@ -57,9 +59,15 @@ class Box extends Component {
   render() {
     return (
       <div className={`Box ${this.state.colorClass}`}>
-        <p className={`animal-name ${this.state.otherClasses}`}>
-          {this.state.displayText}
-        </p>
+        <a 
+          className="animal-link" 
+          href={`https://www.google.com/search?q=${this.state.animalNameQuery}`} 
+          target="_blank"
+        >
+          <p className={`animal-name ${this.state.otherClasses}`}>
+            {this.state.displayText}
+          </p>
+        </a>
       </div>
     )
   }

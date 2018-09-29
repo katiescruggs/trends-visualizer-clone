@@ -4,6 +4,10 @@
   height: 100%;
 }
 
+.animal-link {
+  text-decoration: none;
+}
+
 .animal-name {
   border-right: 1px solid white;
   color: white;
