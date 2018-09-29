@@ -2,6 +2,8 @@
   display: flex;
   align-items: center;
   height: 100%;
+  position: absolute;
+  width: 100%;
 }
 
 .animal-link {
@@ -39,4 +41,34 @@
 
 .color4 {
   background-color: #D95040;
+}
+
+.Box.slide-in.left {
+  left: 0;
+  animation: slide-horizontal 0.5s;
+}
+
+.Box.slide-in.right {
+  right: 0;
+  animation: slide-horizontal 0.5s;
+}
+
+.Box.slide-in.up {
+  bottom: 0;
+  animation: slide-vertical 0.5s;
+}
+
+.Box.slide-in.down {
+  top: 0;
+  animation: slide-vertical 0.5s;
+}
+
+@keyframes slide-horizontal {
+  0% { width: 0; }
+  100% { width: 100%; }
+}
+
+@keyframes slide-vertical {
+  0% { height: 0; }
+  100% { height: 100%; }
 }
