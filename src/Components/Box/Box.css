@@ -1,12 +1,28 @@
 .Box {
   display: flex;
   align-items: center;
-  padding: 15px;
+  height: 100%;
+}
+
+.animal-link {
+  text-decoration: none;
 }
 
 .animal-name {
+  border-right: 1px solid white;
   color: white;
   font-size: 28px;
+  margin: 15px;
+  white-space: nowrap;
+}
+
+.animal-name.done-typing {
+  animation: blink-cursor .75s step-end infinite;
+}
+
+@keyframes blink-cursor {
+  from, to { border-color: transparent; }
+  50% { border-color: white; }
 }
 
 .color1 {
