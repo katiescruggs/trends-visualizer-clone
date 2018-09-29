@@ -12,7 +12,6 @@ class BoxSquare extends Component {
   }
 
   componentDidMount () {
-    console.log('this.props', this.props)
     const uniqueKey = `${this.props.boxsquareI}-box-${this.state.count}`;
     const newBox = <Box key={uniqueKey} order="first" changeBox={this.changeBox} />
     this.setState({ boxes: [newBox]});
@@ -20,7 +19,6 @@ class BoxSquare extends Component {
 
   changeBox = () => {
     const newCount = this.state.count + 1;
-    console.log('newcount', newCount)
     const uniqueKey = `${this.props.boxsquareI}-box-${newCount}`;
     const newBox = <Box key={uniqueKey} order="second" changeBox={this.changeBox}/>
 
