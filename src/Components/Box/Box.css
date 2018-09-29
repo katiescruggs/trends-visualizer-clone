@@ -43,10 +43,6 @@
   background-color: #D95040;
 }
 
-.Box.slide-in {
-  animation-fill-mode: forwards;
-}
-
 .Box.slide-in.left {
   left: 0;
   animation: slide-horizontal 0.5s;
