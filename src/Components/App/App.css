@@ -2,6 +2,39 @@
   display: grid;
   grid-template-columns: 20% 20% 20% 20% 20%;
   grid-template-rows: 20% 20% 20% 20% 20%;
+  overflow: hidden;
   width: 100vw;
   height: 100vh;
+}
+
+@media screen and (max-width: 1000px) {
+  .App {
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-rows: 26% 26% 26% 26%;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .App {
+    display: grid;
+    grid-template-columns: 33.33% 33.33% 33.33%;
+    grid-template-rows: 34% 34% 34%;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .App {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 51% 51%;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  .App {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 105%;
+  }
 }
