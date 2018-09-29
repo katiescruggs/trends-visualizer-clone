@@ -6,18 +6,15 @@ class Box extends Component {
   constructor() {
     super();
     this.state = {
-      animalName: '',
+      animalLetters: [],
       colorClass: '',
-      displayText: ''
+      displayText: '',
+      otherClasses: ''
     };
   }
 
-  componentDidMount() {
-    const colorClass = this.getColorClass();
-    this.setState({ colorClass });
-
-    const animalName = this.getAnimalName();
-    this.setState({ animalName });
+  async componentDidMount() {
+    this.getNewCard();
   }
 
   getRandomNumber(min, max) {
@@ -30,14 +27,39 @@ class Box extends Component {
   }
 
   getAnimalName() {
-    const animalIndex = this.getRandomNumber(0, animalNames.length - 1);
+    const animalIndex = this.getRandomNumber(0, animalNames.length);
     return animalNames[animalIndex];
+  }
+
+  type() {
+    const nextLetter = this.state.animalLetters.shift();
+    const newDisplayText = this.state.displayText + nextLetter;
+    this.setState({ displayText: newDisplayText });
+
+    if (this.state.animalLetters.length) {
+      setTimeout(() => this.type(), 300);
+    } else {
+      this.setState({ otherClasses: 'done-typing' });
+      // this.props.changeCards();
+      setTimeout(() => this.getNewCard(), 3000);
+    }
+  }
+
+  async getNewCard() {
+    const colorClass = this.getColorClass();
+    const animalLetters = this.getAnimalName().split('');
+
+    await this.setState({ colorClass, animalLetters, displayText: '' });
+
+    this.type();
   }
 
   render() {
     return (
       <div className={`Box ${this.state.colorClass}`}>
-        <p className="animal-name">{this.state.animalName}</p>
+        <p className={`animal-name ${this.state.otherClasses}`}>
+          {this.state.displayText}
+        </p>
       </div>
     )
   }
