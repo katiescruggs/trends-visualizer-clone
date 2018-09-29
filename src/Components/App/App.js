@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Box from '../Box/Box';
-import Row from '../Row/Row';
 import './App.css';
 
 const App = () => {
