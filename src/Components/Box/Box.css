@@ -3,8 +3,6 @@
   align-items: center;
   height: 100%;
   position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
 }
 
@@ -46,12 +44,35 @@
 }
 
 .Box.slide-in {
-  animation: slide 0.5s;
   animation-fill-mode: forwards;
-  left: -100px;
 }
 
-@keyframes slide {
-  0% { left: -100px; }
-  100% { left: 0; }
+.Box.slide-in.left {
+  left: 0;
+  animation: slide-horizontal 0.5s;
+}
+
+.Box.slide-in.right {
+  right: 0;
+  animation: slide-horizontal 0.5s;
+}
+
+.Box.slide-in.up {
+  bottom: 0;
+  animation: slide-vertical 0.5s;
+}
+
+.Box.slide-in.down {
+  top: 0;
+  animation: slide-vertical 0.5s;
+}
+
+@keyframes slide-horizontal {
+  0% { width: 0; }
+  100% { width: 100%; }
+}
+
+@keyframes slide-vertical {
+  0% { height: 0; }
+  100% { height: 100%; }
 }
