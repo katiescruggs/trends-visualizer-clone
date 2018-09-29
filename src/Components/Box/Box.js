@@ -10,11 +10,13 @@ class Box extends Component {
       animalLetters: [],
       colorClass: '',
       displayText: '',
-      otherClasses: ''
+      textClasses: '',
+      boxClasses: ''
     };
   }
 
   async componentDidMount() {
+    console.log('mounting')
     this.getNewCard();
   }
 
@@ -40,8 +42,8 @@ class Box extends Component {
     if (this.state.animalLetters.length) {
       setTimeout(() => this.type(), 300);
     } else {
-      this.setState({ otherClasses: 'done-typing' });
-      setTimeout(() => this.getNewCard(), 3000);
+      this.setState({ textClasses: 'done-typing' });
+      setTimeout(() => this.props.changeBox(), 2000);
     }
   }
 
@@ -51,20 +53,22 @@ class Box extends Component {
     const animalLetters = animalName.split('');
     const animalNameQuery = animalName.split(' ').join('+');
 
-    await this.setState({ colorClass, animalLetters, animalNameQuery, displayText: '' });
+    const boxClasses = this.props.order === 'first' ? this.props.order : `${this.props.order} slide-in`;
+
+    await this.setState({ colorClass, animalLetters, animalNameQuery, displayText: '', boxClasses });
 
     this.type();
   }
 
   render() {
     return (
-      <div className={`Box ${this.state.colorClass}`}>
+      <div className={`Box ${this.state.colorClass} ${this.state.boxClasses}`}>
         <a 
           className="animal-link" 
           href={`https://www.google.com/search?q=${this.state.animalNameQuery}`} 
           target="_blank"
         >
-          <p className={`animal-name ${this.state.otherClasses}`}>
+          <p className={`animal-name ${this.state.textClasses}`}>
             {this.state.displayText}
           </p>
         </a>

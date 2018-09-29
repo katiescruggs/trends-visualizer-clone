@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Box from '../Box/Box';
+// import Box from '../Box/Box';
+import BoxSquare from '../BoxSquare/BoxSquare';
 import './App.css';
 
 const App = () => {
@@ -7,7 +8,8 @@ const App = () => {
   const numberOfRows = 25;
 
   for (let i = 0; i < numberOfRows; i++) {
-    rows.push(<Box />);
+    const uniqueKey=`boxsquare-${i}`;
+    rows.push(<BoxSquare key={uniqueKey} boxsquareI={uniqueKey}/>);
   }
 
   return (
