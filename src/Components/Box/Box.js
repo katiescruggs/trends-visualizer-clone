@@ -19,6 +19,26 @@ class Box extends Component {
     this.getNewCard();
   }
 
+  async getNewCard() {
+    const colorClass = this.getColorClass();
+    const animalName = this.getAnimalName();
+    const animalLetters = animalName.split('');
+    const animalNameQuery = animalName.split(' ').join('+');
+
+    let boxClasses = this.props.order;
+
+    // if this is not the first card, add slide-in class
+    if (this.props.order !== 'first') {
+      const slideDirections = ['left', 'right', 'up', 'down'];
+      const slideIndex = this.getRandomNumber(0, 4);
+      boxClasses += ` slide-in ${slideDirections[slideIndex]}`;
+    }
+
+    await this.setState({ colorClass, animalLetters, animalNameQuery, displayText: '', boxClasses });
+
+    this.type();
+  }
+
   getRandomNumber(min, max) {
     return Math.floor(Math.random() * max) + min;
   }
@@ -38,31 +58,14 @@ class Box extends Component {
     const newDisplayText = this.state.displayText + nextLetter;
     this.setState({ displayText: newDisplayText });
 
+    // recursive call for typing until whole word appears
     if (this.state.animalLetters.length) {
       setTimeout(() => this.type(), 300);
+    // once word is complete, wait 2 seconds then add the next box
     } else {
       this.setState({ textClasses: 'done-typing' });
       setTimeout(() => this.props.changeBox(), 2000);
     }
-  }
-
-  async getNewCard() {
-    const colorClass = this.getColorClass();
-    const animalName = this.getAnimalName();
-    const animalLetters = animalName.split('');
-    const animalNameQuery = animalName.split(' ').join('+');
-
-    let boxClasses = this.props.order;
-    
-    if (this.props.order !== 'first') {
-      const slideDirections = ['left', 'right', 'up', 'down'];
-      const slideIndex = this.getRandomNumber(0, 4);
-      boxClasses += ` slide-in ${slideDirections[slideIndex]}`;
-    }
-
-    await this.setState({ colorClass, animalLetters, animalNameQuery, displayText: '', boxClasses });
-
-    this.type();
   }
 
   render() {

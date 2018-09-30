@@ -24,7 +24,7 @@ class BoxSquare extends Component {
 
     const newBoxes = [...this.state.boxes, newBox];
 
-    // Limit length of boxes array to 2
+    // Get rid of stale boxes by limiting length of newBoxes to 2
     if (newBoxes.length > 2) {
       newBoxes.shift();
     }
