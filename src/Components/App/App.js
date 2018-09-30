@@ -30,16 +30,14 @@ class App extends Component {
   }
 
   handleSelectChange = async (event) => {
-    if (event.target.value === 'default') {
-      if (!this.state.defaultGridSize) {
-        await this.setState({ defaultGridSize: true })
-      }
-    } else {
-      const gridSize = parseInt(event.target.value, 10);
+    const gridSize = parseInt(event.target.value, 10);
 
-      if (gridSize !== this.state.gridSize || this.state.defaultGridSize) {
-        await this.setState({ defaultGridSize: false, gridSize });
-      }
+    // if user is changing to default from a setting that is not default
+    if (event.target.value === 'default' && !this.state.defaultGridSize) {
+        await this.setState({ defaultGridSize: true })
+    // if changing gridsize (or is for case of changing from default to 5x5)
+    } else if (gridSize !== this.state.gridSize || this.state.defaultGridSize) {
+      await this.setState({ defaultGridSize: false, gridSize });
     }
   }
 
